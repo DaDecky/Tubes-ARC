@@ -13,14 +13,37 @@ header {
   width: 100%;
   z-index: 1000; /* Ensures the header stays above other content */
   display: flex;
-  justify-content: space-between;
 }
+
 header > * {
-  margin: 0 20px;
+  margin: 0 10px;
 }
 
 header > img,
 header > a > img {
   width: 50px;
   border-radius: 50px;
+}
+
+#navbar {
+  list-style-type: none;
+  margin-top: 5px;
+  margin-left: 79%;
+  margin-bottom: 5px;
+  display: flex;
+}
+
+#navbar li {
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 0;
+}
+
+#navbar a {
+  padding: 10px 15px 10px 15px;
+  background-color: magenta;
+}
+
+#navbar > li > a:hover{
+  background-color: red;
 }
