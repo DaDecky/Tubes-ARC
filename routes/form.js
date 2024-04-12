@@ -7,10 +7,10 @@ app.get("/", (req, res) => {
   
 app.post("/", async (req, res) => {
    const currentName = req.session.username;
-   const user = await User.findOne({ currentName }); //to get _id
+   const user = await users.findOne({ currentName }); //to get _id
    const currentDate = new Date(); //to get current date
   
-   const blogData = new Posts({
+   const blogData = new Blog({
      title: req.body.title,
      content: req.body.content,
      author: user._id,
@@ -23,14 +23,20 @@ app.post("/", async (req, res) => {
   
 app.put("/:id", async (req, res) => {
     const blogId = req.params.id;
-    const currentBlog = await Posts.findOne({ _id: blogId });
+    const currentBlog = await blogs.findOne({ _id: blogId });
     //---------updating VVV----------------------
     currentBlog.title = req.body.title;
     currentBlog.content = req.body.content;
     currentBlog.short_description = req.body.desc;
     //-------------------------------------------
     await currentBlog.save();
-    res.redirect("/form");
+    res.redirect("/home");
 }); //edit request form
+
+router.delete("/:id", async (req, res) => {
+  const blogId = req.params.id;
+  await blogs.findByIdAndDelete(blogId); // delete
+  res.redirect("/home");
+});
 
 module.exports = router;
