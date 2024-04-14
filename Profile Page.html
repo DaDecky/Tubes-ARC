@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="Profile Page.css">
+</head>
+<body>
+  <div class="container">
+    <div class="profile">
+      <div class="profile-header">
+        <h1> <center> User Profile </center></h1>
+      </div>
+      <div class="profile-picture">
+        <img src="default-profile-picture.png" alt="Profile Picture" id="profile-picture">
+        <input type="file" accept="image/*" id="upload-picture">
+      </div>
+      <div class="profile-info">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Masukkan username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Masukkan password">
+        <label for="birthday">Birthday:</label>
+        <input type="date" id="birthday">
+        <label for="bio">Bio:</label>
+        <textarea id="bio" placeholder="Masukkan bio"></textarea>
+      </div>
+    <div class="profile-footer">
+        <button id="submit-btn">Submit</button>
+    </div>
+  </div>
+  <script src="Profile Page.js"></script>
+</body>
+</html>
