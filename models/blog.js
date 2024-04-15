@@ -19,7 +19,7 @@ const blogSchema = new mongoose.Schema({
         trim: true
     },
     publish_date: {
-        type: String,
+        type: Date,
         required: true
     }
 })

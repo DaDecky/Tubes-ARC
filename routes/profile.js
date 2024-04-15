@@ -5,8 +5,8 @@ const Blog = require("./models/blog");
 
 router.get("/", async (req, res) => {
     const currentName = req.session.username; //get username
-    const user = await User.findOne({ currentName });
-    res.render("/profile/index", { id: user._id });
+    const user = await User.findOne({ username: currentName });
+    res.render("/profile/index", { user: user });
 }); //get profile tab
 
 router.put("/", async (req, res) => {

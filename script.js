@@ -2,13 +2,21 @@ const express = require("express");
 const ejs = require("ejs");
 
 const connectDB = require("./models/db");
-const User = require("./models/dbusers");
-const Posts = require("./models/dbposts");
+const User = require("./models/user");
+const Blog = require("./models/blog");
 const session = require("express-session");
 
 const PORT = 3000;
 
 const app = express();
+
+const blogRoute = require('./routes/blog')
+const formRoute = require('./routes/form')
+const homeRoute = require('./routes/home')
+const loginRoute = require('./routes/login')
+const profileRoute = require('./routes/profile')
+const exploreRoute = require('./routes/explore')
+const myblogsRoute = require('./routes/myblogs')
 
 connectDB();
 // TO DO LIST: try, catch(error) for most
@@ -31,7 +39,7 @@ app.use((req, res, next) => {
     if (req.session && req.session.username) {
       next();
     } else {
-      res.redirect("login");
+      res.redirect("/login");
     }
   } else {
     next();
@@ -43,95 +51,19 @@ app.use((req, res, next) => {
   next();
 }); //prints out html requests
 
-//------------login---------------
-app.get("/login", (req, res) => {
-  res.render("login/index"); // ejs handling
-});
-app.post("/login", async (req, res) => {
-  const { username, password } = req.body;
+//------------API-------------------
+app.use('/login', loginRoute);
+app.use('/home', homeRoute);
+app.use('/blog', blogRoute);
+app.use('/form', formRoute);
+app.use('/profile', profileRoute);
+app.use('/explore', profileRoute);
+app.use('/myblogs', profileRoute);
 
-  const user = await User.findOne({ username });
-
-  if (!user || !(password === user.password)) {
-    return res.send("Invalid username or password!");
-  }
-  req.session.username = username; //menandakan session dibangun
-  res.redirect("/home");
-});
-//---------------home------------------------
-app.get("/home", (req, res) => {
-  res.redirect("/");
-}); //for mistaken people
 app.get("/", (req, res) => {
-  res.render("homepage/index");
-}); //to homepage
-app.delete("/:id", async (req, res) => {
-  const blogId = req.params.id;
-  await Posts.findByIdAndDelete(blogId); // delete
-  res.redirect("/home");
-}); //to delete
+    res.redirect("/home");
+  }); //for mistaken people
 
-//---------------blogs--------------------------
-app.get("/blogs", (req, res) => {
-  res.render("blogs/index");
-}); //list of blogs
-
-app.get("/blogs/:id", async (req, res) => {
-  const blogId = req.params.id;
-  res.render("blogs/index", { id: blogId });
-}); //sends the specific blog Id through a query parameter, that would be checked by javascript in the index.html, fetch with mongodb (WOULD BE EASIER WITH EJS)
-
-//---------------form------------------------
-app.get("/form", (req, res) => {
-  res.render("/form/index");
-}); //send to form
-
-app.post("/form", async (req, res) => {
-  const currentName = req.session.username;
-  const user = await User.findOne({ currentName }); //to get _id
-  const currentDate = new Date(); //to get current date
-
-  const blogData = new Posts({
-    title: req.body.title,
-    content: req.body.content,
-    author: user._id,
-    short_description: req.body.desc,
-    publish_date: currentDate,
-  });
-  await blogData.save(); //save
-  res.redirect("/form");
-}); //post request form
-
-app.put("/form/:id", async (req, res) => {
-  const blogId = req.params.id;
-  const currentBlog = await Posts.findOne({ _id: blogId });
-  //---------updating VVV----------------------
-  currentBlog.title = req.body.title;
-  currentBlog.content = req.body.content;
-  currentBlog.short_description = req.body.desc;
-  //-------------------------------------------
-  await currentBlog.save();
-  res.redirect("/form");
-}); //edit request form
-
-//---------------profile-------------------------------
-app.get("/profile", async (req, res) => {
-  const currentName = req.session.username; //get username
-  const user = await User.findOne({ currentName });
-  res.render("/profile/index", { id: user._id });
-}); //get profile tab
-
-app.put("/profile", async (req, res) => {
-  const currentName = req.session.username;
-  const currentUser = await User.findOne({ currentName });
-  //---------updating VVV-----------------------------
-  currentUser.name = req.body.name;
-  currentUser.bio = req.body.bio;
-  //--------------------------------------------------
-  await currentUser.save();
-  res.redirect("/form");
-}); // update profile
-//------------------------------------------------------
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
 });
