@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb://localhost:27017/blogdata'; // Replace with your connection string
+const connectionString = 'mongodb://localhost:27017/blogdata'; 
 
 const connectDB = async () => {
   try {
@@ -8,7 +8,7 @@ const connectDB = async () => {
     console.log('MongoDB connected successfully!');
   } catch (err) {
     console.error('Error connecting to MongoDB:', err);
-    process.exit(1); // Exit the application on connection error
+    process.exit(1);
   }
 };
 

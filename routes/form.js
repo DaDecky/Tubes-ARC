@@ -7,7 +7,7 @@ app.get("/", (req, res) => {
     res.render("/form/index");
   }); //send to form
   
-app.post("/", async (req, res) => {
+app.post("/", upload.single('picture'), async (req, res) => {
    const currentName = req.session.username;
    const user = await User.findOne({ username: currentName }); //to get _id
    const currentDate = new Date(); //to get current date
@@ -23,7 +23,7 @@ app.post("/", async (req, res) => {
    res.redirect("/form");
  }); //post request form
   
-app.put("/:id", async (req, res) => {
+app.put("/:id", upload.single('picture'), async (req, res) => {
     const blogId = req.params.id;
     const currentBlog = await Blog.findOne({ _id: blogId });
     //---------updating VVV----------------------
@@ -39,6 +39,6 @@ router.delete("/:id", async (req, res) => {
   const blogId = req.params.id;
   await Blog.findByIdAndDelete(blogId); // delete
   res.redirect("/home");
-});
+});//handle delete
 
 module.exports = router;
