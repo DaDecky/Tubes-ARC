@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 0;
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 1000; /* Ensures the header stays above other content */
+        display: flex;
+      }
+
+      header > * {
+        margin: 0 10px;
+      }
+
+      header > img,
+      header > a > img {
+        width: 50px;
+        border-radius: 50px;
+      }
+
+      #navbar {
+        list-style-type: none;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        display: flex;
+      }
+
+      #navbar li {
+        margin-right: 10px;
+        margin-top: 10px;
+        padding: 0;
+      }
+
+      #profpic {
+        position:absolute;
+        right: 10px;
+      }
+
+      #navbar a {
+        text-decoration: none;
+        padding: 10px 15px 10px 15px;
+        background-color: white;
+        opacity: 0.8;
+        transition: all ease 500ms;
+        color:black;
+      }
+
+      #navbar a:hover{
+        opacity: 1;
+      }
+
+      body{
+        padding: 0 0 3rem 0;
+      }
+
+      .top-categories{
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+
+      .top-categories h2{
+        text-align: center;
+        padding-bottom: 1rem;
+      }
+
+      .slider-wrapper{
+        position: relative;
+        margin: auto;
+        max-width:40rem;
+        border-style:solid;
+        border-radius: 10px;
+      }
+
+      .slider{
+        display: flex;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        aspect-ratio: 16/9;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        border-radius: 10px;
+        
+      }
+
+      .slider div{
+        position: relative;
+        flex: 1 0 100%;
+        scroll-snap-align: start;
+      }
+
+      .slider div::after{
+        content:"";
+        position: absolute;
+        top:60%;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+        z-index:1;
+      }
+
+      .slider div img{
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+      }
+
+      .slider div a{
+        position:absolute;
+        bottom:3rem;
+        right:3rem;
+        text-align:right;
+        color: white;
+        z-index: 2;
+        transition: all ease 250ms;
+        size:20px;
+      }
+
+      .slider div a:hover{
+        transform: scale(1.2);
+      }
+
+
+      .slider-nav{
+        display: flex;
+        gap: 1rem;
+        position:absolute;
+        bottom: 1rem;
+        left:50%;
+        transform: translateX(-50%);
+        z-index: 2;
+      }
+
+      .slider-nav a{
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background-color: white;
+        opacity: 0.75;
+        transition: opacity ease 200ms;
+        z-index:2;
+      }
+
+      .slider-nav a:hover{
+        opacity: 1;
+      }
+
+      .content{
+        padding-left: 2rem;
+        display: flex;
+        justify-content: left;
+        gap:2.5rem;
+        flex-wrap: wrap;
+      }
+
+      h2{
+        margin-top:2rem;
+        margin-left:2rem; 
+        text-align: center;
+      }
+
+      .card{
+        display: block;
+        text-decoration: none;
+        color: black;
+        width:30%;
+        transition: box-shadow .3s;
+      }
+
+      .card:hover{
+        box-shadow: 0 0 1rem rgba(33, 33, 33, 0.2);
+      }
+
+      .article {
+        border: black 2px outset;
+        padding: 2rem 2rem 2rem 2rem;
+      }
+
+      .article h3{
+        font-size: 1.75rem;
+      }
+
+      .article img{
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+      }
+
+      #more{
+        text-decoration: none;
+        display: inline-block;
+        position: absolute;
+        right: 6rem;
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+        border: 2px rgba(0,0,0,0.2) outset;
+      }
+
+      #add-button {
+        text-decoration: none;
+        color: black;
+        background-color: white;
+        position:fixed;
+        right: 40px;
+        bottom: 30px;
+        font-size: 60px;
+        padding: 5px 22px 5px 25px;
+        border-radius: 60px;
+        transition: box-shadow .3s; 
+        border: 2px rgba(0,0,0,0.2) outset;
+      }
+
+      #add-button:hover{
+        box-shadow: 0 0 1rem rgba(33, 33, 33, 0.2);
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="features\feature-1\homepage\styles.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <header>
+      <img src="./assets/images/dumbell logo.jpg" alt="" />
+      <ul id="navbar">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./explore.html">Explore</a></li>
+      </ul>
+      <a href="./profile.html"><img id="profpic" src="./assets/images/default-profile-img.webp" alt=""/></a>
+    </header>
+    <!-- content -->
+    <section class="top-categories">
+      <h2>Top Categories</h2>
+      <div class="slider-wrapper">
+        <div class="slider">
+          <div id="img1">
+            <img id="slide-1" src="./assets/images/test-1.png">
+            <a href = "./category/category1">Category 1</a> 
+          </div>
+          <div id="img2">
+            <img id="slide-2" src="./assets/images/test-2.jpg">
+            <a href = "./category/category2">Category 2</a>
+          </div>
+          <div id="img3">
+            <img id="slide-3" src="./assets/images/test-3.jpg">
+            <a href = "./category/category3">Category 3</a>
+          </div>
+        </div>
+        <div class="slider-nav">
+          <a href="#img1"></a>
+          <a href="#img2"></a>
+          <a href="#img3"></a>
+        </div>
+      </div>
+    <h2>Latest Articles</h2>
+    <section class="content">
+      <a class = "card" href="index.html">
+        <div class = "article">
+          <h3>Title</h3>
+          <img src="../../../assets/images/logo.png">
+          <p>Description: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias velit quisquam suscipit quod accusamus, veritatis neque sunt, rem eum fugiat iure delectus quasi architecto nostrum vel consequuntur et natus ipsum.</p>
+        </div>
+      </a>
+      <a class = "card" href="index.html">
+        <div class = "article">
+          <h3>Title</h3>
+          <img src="../../../assets/images/logo.png">
+          <p>Description: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias velit quisquam suscipit quod accusamus, veritatis neque sunt, rem eum fugiat iure delectus quasi architecto nostrum vel consequuntur et natus ipsum.</p>
+        </div>
+      </a>
+      <a class = "card" href="index.html">
+        <div class = "article">
+          <h3>Title</h3>
+          <img src="../../../assets/images/logo.png">
+          <p>Description: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias velit quisquam suscipit quod accusamus, veritatis neque sunt, rem eum fugiat iure delectus quasi architecto nostrum vel consequuntur et natus ipsum.</p>
+        </div>
+      </a>
+      <a class = "card" href="index.html">
+        <div class = "article">
+          <h3>Title</h3>
+          <img src="./assets/images/dumbell logo.jpg">
+          <p>Description: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias velit quisquam suscipit quod accusamus, veritatis neque sunt, rem eum fugiat iure delectus quasi architecto nostrum vel consequuntur et natus ipsum.</p>
+        </div>
+      </a>
+    </section>
+    <a id="more" href="../explore/">> See More...</a>
+      <a id="add-button" href="../form/">+</a>
+      <script src="script.js"></script>
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUCK MY COCK</title>
+</head>
+<body>
+  <h2>OMEGANIGGER</h2>
+</body>
+</html> -->
