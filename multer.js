@@ -1,4 +1,5 @@
 const multer = require("multer")
+const path = require("path")
 const storage = multer.diskStorage({
     destination: function (req, file, cb){
       cb(null, './uploads')
@@ -8,13 +9,13 @@ const storage = multer.diskStorage({
       let filename;
       if (req.body.userId) {
           // Profile picture: Use user ID as filename
-          filename = 'profile_' + req.body.userId + '.jpg';
+          filename = 'profile_' + req.body.userId + path.extname(file.originalname);
       } else if (req.body.blogId) {
           // Blog picture: Use blog ID as filename
-          filename = 'blog_' + req.body.blogId + '.jpg';
+          filename = 'blog_' + req.body.blogId + path.extname(file.originalname);
       } else {
           // Default filename if neither user ID nor blog ID is provided
-          filename = file.fieldname + '-' + Date.now() + '.jpg';
+          filename = file.fieldname + '-' + Date.now() + path.extname(file.originalname);
           console.log("err")
       }
       cb(null, filename);

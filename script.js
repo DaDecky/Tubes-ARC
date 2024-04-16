@@ -1,6 +1,6 @@
 const express = require("express");
 const ejs = require("ejs");
-const multer = require('multer');
+
 
 const connectDB = require("./models/db.js");
 const User = require("./models/user.js");
@@ -48,33 +48,6 @@ app.use(
 // });
 //if no session, send back to login
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb){
-    cb(null, './uploads')
-  },
-  filename: function(req, file, cb) {
-    // Determine filename based on the type of file (profile picture or blog picture)
-    let filename;
-    if (req.body.userId) {
-        // Profile picture: Use user ID as filename
-        filename = 'profile_' + req.body.userId + '.jpg';
-    } else if (req.body.blogId) {
-        // Blog picture: Use blog ID as filename
-        filename = 'blog_' + req.body.blogId + '.jpg';
-    } else {
-        // Default filename if neither user ID nor blog ID is provided
-        filename = file.fieldname + '-' + Date.now() + '.jpg';
-        console.log("err")
-    }
-    cb(null, filename);
-  }
-});
-  //enctype = "multipart/form-data"
-
-
-const upload = multer({ storage })
-console.log(upload)
-
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
@@ -85,19 +58,7 @@ app.use('/login', loginRoute);
 app.use('/home', homeRoute);
 app.use('/blog', blogRoute);
 app.use('/form', formRoute);
-// app.use('/profile', profileRoute);
-
-app.put("/profile", upload.single("pfp"), async (req, res) => {
-  const currentName = req.session.username;
-  const currentUser = await User.findOne({ currentName });
-  //---------updating VVV-----------------------------
-  currentUser.name = req.body.name;
-  currentUser.bio = req.body.bio;
-  currentUser.pfp = req.file.filename;
-  await currentUser.save();
-  res.redirect("/profile");
-}); // update profile
-
+app.use('/profile', profileRoute);
 app.use('/explore', exploreRoute);
 app.use('/myblogs', myblogsRoute);
 
@@ -108,5 +69,3 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
 });
-
-module.exports = { upload };
