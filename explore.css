@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures the header stays above other content */
+    display: flex;
+}
+
+header > * {
+    margin: 0 10px;
+}
+
+header > img,
+header > a > img {
+    width: 50px;
+    border-radius: 50px;
+}
+
+#navbar {
+    list-style-type: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: flex;
+}
+
+#navbar li {
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 0;
+}
+
+#profpic {
+    position:absolute;
+    right: 10px;
+}
+
+#navbar a {
+    text-decoration: none;
+    padding: 10px 15px 10px 15px;
+    background-color: white;
+    opacity: 0.8;
+    transition: all ease 500ms;
+    color:black;
+}
+
+#navbar a:hover{
+    opacity: 1;
+}
+
+.content{
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: left;
+    gap:2.5rem;
+    flex-wrap: wrap;
+}
+
+h2{
+    margin-top:2rem;
+    margin-left:2rem; 
+    text-align: center;
+}
+
+.card{
+    display: block;
+    text-decoration: none;
+    color: black;
+    width:30%;
+    transition: box-shadow .3s;
+}
+
+.card:hover{
+    box-shadow: 0 0 1rem rgba(33, 33, 33, 0.2);
+}
+
+.article {
+    border: black 2px outset;
+    padding: 2rem 2rem 2rem 2rem;
+}
+
+.article h3{
+    font-size: 1.75rem;
+}
+
+.article img{
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+  
