@@ -21,6 +21,9 @@ const blogSchema = new mongoose.Schema({
     publish_date: {
         type: Date,
         required: true
+    },
+    picture: {
+        type: String
     }
 })
 

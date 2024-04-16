@@ -21,6 +21,7 @@ router.post("/", upload.single('picture'), async (req, res) => {
      author: user._id,
      short_description: req.body.desc,
      publish_date: currentDate,
+     picture: req.file.filename
    });
    await blogData.save(); //save
    res.redirect("/form");
