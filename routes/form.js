@@ -2,14 +2,15 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 const Blog = require("../models/blog");
-// const upload = require('../script');
+const upload = require('../multer.js');
+
 
 router.get("/", (req, res) => {
     res.render("/form/index");
   }); //send to form
   
-// router.post("/", upload.single('picture'), async (req, res) => {
-router.post("/", async (req, res) => {
+router.post("/", upload.single('picture'), async (req, res) => {
+// router.post("/", async (req, res) => {
    const currentName = req.session.username;
    const user = await User.findOne({ username: currentName }); //to get _id
    const currentDate = new Date(); //to get current date
