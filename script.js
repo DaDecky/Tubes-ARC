@@ -2,17 +2,17 @@ const express = require("express");
 const ejs = require("ejs");
 const multer = require('multer');
 
-const connectDB = require("./models/db");
-const User = require("./models/user");
-const Blog = require("./models/blog");
+const connectDB = require("./models/db.js");
+const User = require("./models/user.js");
+const Blog = require("./models/blog.js");
 const session = require("express-session");
 
 const PORT = 3000;
 
 const app = express();
 
-const blogRoute = require('./routes/blog')
-const formRoute = require('./routes/form')
+const blogRoute = require('./routes/blog.js')
+const formRoute = require('./routes/form.js')
 const homeRoute = require('./routes/home')
 const loginRoute = require('./routes/login')
 const profileRoute = require('./routes/profile')
@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb){
-    cb(null, '/uploads')
+    cb(null, './uploads')
   },
   filename: function(req, file, cb) {
     // Determine filename based on the type of file (profile picture or blog picture)
@@ -95,4 +95,4 @@ app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
 });
 
-module.exports = { upload };
+module.exports = upload;
