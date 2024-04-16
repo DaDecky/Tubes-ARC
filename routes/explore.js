@@ -1,9 +1,6 @@
-const express = require('express');
-const { route } = require('./blog');
+const express = require("express");
 const router = express.Router();
-
-router.get('/', (req,res) => {
-    res.render('/explore');
-});
+const User = require("../models/user");
+const Blog = require("../models/blog");
 
 module.exports = router;

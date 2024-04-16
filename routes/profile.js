@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const User = require("./models/user");
-const Blog = require("./models/blog");
+const User = require("../models/user");
+const Blog = require("../models/blog");
 const { upload } = require('../script')
 
 router.get("/", async (req, res) => {
@@ -10,7 +10,8 @@ router.get("/", async (req, res) => {
     res.render("/profile/index", { user: user });
 }); //get profile tab
 
-router.put("/", upload.single('pfp'), async (req, res) => {
+// router.put("/", upload.single('pfp'), async (req, res) => {
+router.put("/", async (req, res) => {
     const currentName = req.session.username;
     const currentUser = await User.findOne({ currentName });
     //---------updating VVV-----------------------------
