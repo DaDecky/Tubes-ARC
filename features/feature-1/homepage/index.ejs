@@ -198,6 +198,10 @@
         object-fit: cover;
       }
 
+      p{
+        margin-top: 0.5rem;
+      }
+
       .muted{
         color:#949494;
       }
@@ -276,8 +280,8 @@
           <div class = "article">
             <h3><%= article.title %></h3>
             <img src="/images/logo.png">
-            <p class="muted"><%= article.date.toLocaleDateString() %></p>
-            <p><%= article.desc %></p>
+            <p class="muted"><%= article.publish_date.toLocaleDateString() %></p>
+            <p style="color:#333";><%= article.short_description %></p>
           </div>
         </a>
       <% }) %>

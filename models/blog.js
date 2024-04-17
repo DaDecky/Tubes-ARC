@@ -20,6 +20,7 @@ const blogSchema = new mongoose.Schema({
     },
     publish_date: {
         type: Date,
+        default: Date.now,
         required: true
     }
 })

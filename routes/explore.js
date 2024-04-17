@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
             desc: 'Description'
         }
     ]
-    res.render("explore/explore");
+    res.render("explore/explore", {articles});
 }); //to homepage   
 
 module.exports = router;

@@ -27,7 +27,7 @@ connectDB();
 //-------------------middleware--------------------------------
 // app.use(express.static('features')) // for sendFile(), irrelevant switc to ejs;
 
-app.use( express.static( "public" ) ); // display static images
+app.use(express.static( "public" ) ); // display static images
 
 app.set("view engine", "ejs"); //pick ejs as view engine
 
@@ -98,10 +98,12 @@ app.get('/debug', (req, res) => {
 //---------------------------------
 
 //------------API-------------------
+app.use(express.urlencoded({extended: false}));
 app.use('/login', loginRoute);
 app.use('/home', homeRoute);
 app.use('/blog', blogRoute);
 app.use('/form', formRoute);
+
 // app.use('/profile', profileRoute);
 
 app.put("/profile", upload.single("pfp"), async (req, res) => {

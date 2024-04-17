@@ -119,22 +119,21 @@
         </ul>
         <a href="./profile.html"><img id="profpic" src="/images/default-profile-img.webp" alt=""/></a>
     </header>
-    <form id="submissionForm">
+    <form id="submissionForm" action="/form" method="POST">
         <label for="title">Judul:</label><br>
-        <input type="text" id="title" name="title" required><br>
+        <input type="text" id="title" name="title" required value="<%= blogData.title %>"><br>
 
         <label for="photo">Foto:</label><br>
         <input type="file" id="photo" name="photo" accept="image/*" required><br>
 
         <label for="Konten">Konten:</label><br>
-        <textarea id="content" name="content" required></textarea><br>
+        <textarea id="content" name="content" required value="<%= blogData.content %>"></textarea><br>
 
         <label for="Deskripsi">Short Description:</label><br>
-        <input type="text" id="shortDescription" name="shortDescription" required><br>
+        <input type="text" id="shortDescription" name="shortDescription" required value="<%= blogData.short_description %>"><br>
 
         <button type="submit">Submit</button>
     </form>
-
     <script src="Form Tubes ARC.js"></script>
 </body>
 </html>
