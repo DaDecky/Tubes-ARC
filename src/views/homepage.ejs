@@ -1,0 +1,65 @@
+<!-- --------------------------------------------------------------------------- -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homepage</title>
+  <link rel="stylesheet" href="/styles/homepage.css" />
+</head>
+
+<body>
+  <nav>
+
+    <% if (username) { %>
+    <div id="nav-left">
+      <a href="/"> <button id="homepage-btn">Homepage</button></a>
+      <a href="/explore"> <button id="homepage-btn">Explore</button></a>
+      <a href="/myblogs"> <button id="homepage-btn">My Blogs</button></a>
+
+    </div>
+    <div id="nav-right">
+      <a href="/createblog"><button>New Blog</button></a>
+      <a href="/logout"><button>Logout</button></a>
+      <a href="/profile"><button>Profile</button></a>
+
+    </div>
+
+    <% }else{%>
+    <div id="nav-left">
+      <a href="/"> <button id="homepage-btn">Homepage</button></a>
+      <a href="/explore"> <button id="homepage-btn">Explore</button></a>
+
+    </div>
+    <div id="nav-right">
+      <a href="/login"><button>Login</button></a>
+      <a href="/signup"><button>Sign up</button></a>
+
+    </div>
+
+    <%}%>     
+
+
+  </nav>
+  <hr />
+  <h1 id="page-title">Latest Articles</h2>
+
+    <div class="card-container">
+              <% blogs.forEach(blog => { %>
+    <div class="card">
+      <h3><%= blog.title %></h3>
+      <p class="muted"><%= blog.publish_date.toLocaleDateString() %></p>
+      <p><%= blog.short_description %></p>
+      <a href="/blog/<%=blog.blogId%>">
+        <button>Go To Blog</button>
+      </a>
+    </div>
+    </a>
+    <% }) %>
+
+    </div>
+    <footer><a href="/explore">See More</a></footer>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Submission</title>
+    <!-- <link rel="stylesheet" href="Form Tubes ARC.css" /> -->
+    <link rel="stylesheet" href="/styles/form.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/"><button>Homepage</button></a>
+    </nav>
+    <hr />
+    <form id="submissionForm" action="/api/blog/create" method="post">
+      <label for="title">Judul:</label><br />
+      <input type="text" id="title" name="title" required /><br />
+
+      <!-- <label for="photo">Foto:</label><br />
+      <input
+        type="file"
+        id="photo"
+        name="photo"
+        accept="image/*"
+        required
+      /><br /> -->
+
+      <label for="Konten">Konten:</label><br />
+      <textarea id="content" name="content" required></textarea><br />
+
+      <label for="Deskripsi">Deskripsi Singkat:</label><br />
+      <input
+        type="text"
+        id="shortDescription"
+        name="short_description"
+        required
+      /><br />
+      <% if (messages.error) { %> <%= messages.error %> <% } %>
+      <button type="submit">Submit</button>
+    </form>
+
+    <!-- <script src="Form Tubes ARC.js"></script> -->
+  </body>
+</html>

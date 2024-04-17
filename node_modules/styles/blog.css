@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: aquamarine;
+}
+.post-header{
+    text-align: center;
+}
+.backhome{
+    text-align: left;
+    display: flex;
+    padding-left: 70px;
+    gap: 10px;
+    font-size: 2.5ch;
+}
+.title{
+    padding-top: 30px;
+}
+.header{
+    width: 100%;
+    height: 240px;
+    
+}
+.wiresharkimg{
+    max-width: 400px;
+    padding-top: 30px;
+    height: 150px;
+}
+hr {
+    clear: both;
+    border: 0px;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+.isi {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: justify;
+    align-items: center;
+    padding-left: 80px;
+    gap: 20px;
+    font-size:3ch;
+    padding-left: 300px;
+    padding-right: 300px;
+    
+}
+.back{
+    max-width: 20px;
+    max-height: 20px;
+    height: 20px;
+}
+.autor{
+    font-size: 3ch;
+    padding-left: 300px;
+}
+.edit{
+    text-decoration: none;
+    background-color: blue;
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    font-size: 60px;
+    border-radius: 60px;
+    padding: 5px 22px 5px 22px;
+}

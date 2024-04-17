@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My blogs</title>
+    <link rel="stylesheet" href="/styles/myblogs.css">
+  </head>
+  <body>
+    <nav>
+      <a href="/"> <button id="homepage-btn">Homepage</button></a>
+      <a href="/createblog"><button>New Blog</button></a>
+    </nav>
+    <hr />
+    <h1 id="page-title">My Blogs</h2>
+        
+    <% if (blogs.length !== 0) {%>
+    <div class="card-container">
+
+
+    <% blogs.forEach(function(blog) {%>
+    <div class="card">
+    <h3><%= blog.title %></h3>
+        <p>
+         <%= blog.short_description %>
+        </p>
+        <a href="/blog/<%=blog.blogId%>">
+          <button>Go To Blog</button>
+        </a>
+      </div>
+    <% }) %>
+
+    </div>
+        
+    <% } else {%>
+        <div id="no-blog">
+            <h1>You Have No Blogs, Please Make One</h1>
+            <a href="/createblog"><button>New Blog</button></a>
+        </div>
+
+    <% } %>
+
+
+  </body>
+</html>

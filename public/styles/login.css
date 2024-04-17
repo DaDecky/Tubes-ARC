@@ -1,0 +1,33 @@
+body {
+  background-color: rgb(195, 195, 195);
+}
+
+.container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  background-color: rgb(175, 175, 175);
+  padding: 2rem;
+}
+
+.row {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+button {
+  background-color: white;
+  opacity: 0.8;
+  transition: all ease 250ms;
+}
+
+button:hover {
+  opacity: 1;
+}

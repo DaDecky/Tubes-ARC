@@ -1,14 +1,22 @@
 import passport from "passport";
 import { Strategy } from "passport-local";
 import users from "../constants/users.mjs";
+import User from "../models/user.mjs";
+import mongoose from "mongoose";
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  // console.log("ser", user._id);
+  done(null, user._id);
 });
 
-passport.deserializeUser((id, done) => {
+passport.deserializeUser(async (id, done) => {
+  // console.log("des", id);
   try {
-    const findUserById = users.find((user) => user.id === id);
+    const findUserById = await User.findOne({
+      _id: new mongoose.Types.ObjectId(id),
+    });
+    // console.log(findUserById);
+    // const findUserById = users.find((user) => user.id === id);
     if (!findUserById) {
       throw new Error("user not found");
     }
@@ -19,19 +27,23 @@ passport.deserializeUser((id, done) => {
 });
 
 export default passport.use(
-  new Strategy((username, password, done) => {
+  new Strategy(async (username, password, done) => {
     try {
-      const findUser = users.find((user) => user.username === username);
+      // const findUser = users.find((user) => user.username === username);
+      const findUser = await User.findOne({ username: username });
       if (!findUser) {
-        throw new Error("user not found");
+        return done(null, false, { message: "User not found" });
+        // throw new Error("user not found");
       }
       if (findUser.password !== password) {
-        throw new Error("password not match");
+        return done(null, false, { message: "Password not match" });
+        // throw new Error("password not match");
       }
       done(null, findUser);
     } catch (err) {
-      console.log("erorr");
-      done(err, null, { message: err.message });
+      // console.log("erorr");
+      // done(err, null, { message: err.message });
+      done(err);
     }
   })
 );
