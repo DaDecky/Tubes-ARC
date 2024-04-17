@@ -14,8 +14,8 @@ router.get("/", async (req, res) => {
     var pageCount = await Blog.countDocuments();
     pageCount = (pageCount-1)/articlesPerPage;
     const pageInt = parseInt(page);
-    const next_page = pageInt < pageCount ? `/explore?p=${(parseInt(page)+1)}` : '#';
-    const prev_page = pageInt >0 ? `/explore?p=${pageInt-1}` : '#';
+    const next_page = pageInt < pageCount ? `/explore?p=${(parseInt(page)+1)}` : '#bottom';
+    const prev_page = pageInt >0 ? `/explore?p=${pageInt-1}` : '#bottom';
     res.render("explore/explore", {articles: articles, next_page:next_page, prev_page:prev_page});
 }); //to homepage   
 
