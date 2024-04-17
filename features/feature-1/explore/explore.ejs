@@ -130,8 +130,8 @@
           <div class = "article">
             <h3><%= article.title %></h3>
             <img src="/images/logo.png">
-            <p class="muted"><%= article.date.toLocaleDateString() %></p>
-            <p><%= article.desc %></p>
+            <p class="muted"><%= article.publish_date.toLocaleDateString() %></p>
+            <p><%= article.short_description %></p>
           </div>
         </a>
       <% }) %>
