@@ -29,6 +29,11 @@
         border-radius: 50px;
       }
 
+      h1{
+        margin: 0.5rem 0.5rem 0 0;
+        text-align: center;
+      }
+
       #navbar {
             list-style-type: none;
             margin-top: 0.5rem;
@@ -36,7 +41,7 @@
             display: flex;
       }
 
-      #navbar li {
+      header li {
           margin-right: 10px;
           margin-top: 10px;
           /* margin-bottom:10px; */
@@ -48,7 +53,7 @@
         right: 10px;
       }
 
-      #navbar a {
+      header a {
         text-decoration: none;
         padding: 10px 15px 10px 15px;
         background-color: white;
@@ -57,8 +62,24 @@
         color:black;
       }
 
-      #navbar a:hover{
+      header a:hover{
         opacity: 1;
+      }
+
+      #login{
+        position:absolute;
+        right:6rem;
+        top: 20px;
+      }
+
+      #signup{
+        position: absolute;
+        right: 10px;
+        top: 20px;
+      }
+
+      #navbar-right{
+        list-style-type: none;
       }
 
       body{
@@ -71,13 +92,14 @@
       }
 
       .top-categories h2{
-        text-align: center;
+        margin: 1rem auto;
         padding-bottom: 1rem;
       }
 
       .slider-wrapper{
         position: relative;
         margin: auto;
+        margin-bottom: 2rem;
         max-width:40rem;
         border-style:solid;
         border-radius: 10px;
@@ -244,12 +266,25 @@
     <header>
       <img src="/images/logo.png" alt="rwar"/>
       <ul id="navbar">
-        <li><a href="http://localhost:5500/">Home</a></li>
-        <li><a href="http://localhost:5500/explore">Explore</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="explore">Explore</a></li>
       </ul>
-      <a href="./profile.html"><img id="profpic" src="/images/default-profile-img.webp" alt=""/></a>
+      <% if (username) { %>
+        <a class="right-btn" href="/logout">Logout</a>
+        <a href="./profile"><img id="profpic" src="/images/default-profile-img.webp" alt=""/></a>
+      <%} else{%>
+        <ul id ="navbar-right">
+          <li><a id="login" href="/login">Login</a></li>
+          <li><a id="signup" href="/signup">Signup</a></li>
+        </ul>
+      <%}%>  
+      
     </header>
     <!-- content -->
+    <% if (username) { %>
+      <h1>Welcome to the homepage, <%= username %>!</h1>
+    <% } %>
+
     <section class="top-categories">
       <h2>Top Categories</h2>
       <div class="slider-wrapper">

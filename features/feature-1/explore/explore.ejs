@@ -108,6 +108,29 @@
           aspect-ratio: 16/9;
           object-fit: cover;
       }
+
+      .pagination{
+        margin-bottom: 4rem;
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+      }
+
+      .pagination a{
+        text-decoration: none;
+        color:black;
+        text-decoration: none;
+        padding: 10px 15px 10px 15px;
+        background-color: rgb(205, 205, 205);
+        opacity: 1;
+        transition: all ease 500ms;
+        color:black;
+      }
+
+      .pagination a:hover{
+          opacity: 0.8;
+      }
+
     </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -136,5 +159,10 @@
         </a>
       <% }) %>
     </section>
+    <div class="pagination">
+      <a href = <%=prev_page%>> << Previous Page</a>
+      <a href = <%=next_page%>> Next Page >> </a>
+    </div>
     <script src="script.js"></script>
+    <script src="pagination.js"></script>
   </body>
