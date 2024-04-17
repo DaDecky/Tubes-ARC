@@ -4,7 +4,24 @@ const User = require("../models/user");
 const Blog = require("../models/blog");
 
 router.get("/", (req, res) => {
-    res.render("homepage/index");
-}); //to homepage
+    const articles=[
+        {
+            title: 'TITLE',
+            date: new Date(),
+            desc: 'Dexription'
+        },
+        {
+            title: 'TITLE2',
+            date: new Date(),
+            desc: 'Description'
+        },
+        {
+            title: 'TITLE3',
+            date: new Date(),
+            desc: 'Description'
+        }
+    ]
+    res.render("homepage/index", {articles});
+}); //to homepage   
 
 module.exports = router;

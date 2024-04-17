@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+      }
+
+      header {
+          background-color: #333;
+          color: #fff;
+          padding: 10px 0;
+          position: sticky;
+          top: 0;
+          width: 100%;
+          z-index: 1000; /* Ensures the header stays above other content */
+          display: flex;
+      }
+
+      header > * {
+          margin: 0 10px;
+      }
+
+      header > img,
+      header > a > img {
+          height: 50px;
+          border-radius: 50px;
+      }
+
+      #navbar {
+            list-style-type: none;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+        }
+
+      #navbar li {
+          margin-right: 10px;
+          margin-top: 10px;
+          /* margin-bottom:10px; */
+          padding: 0;
+      }
+
+      #profpic {
+          position:absolute;
+          right: 10px;
+      }
+
+      #navbar a {
+          text-decoration: none;
+          padding: 10px 15px 10px 15px;
+          background-color: white;
+          opacity: 0.8;
+          transition: all ease 500ms;
+          color:black;
+      }
+
+      #navbar a:hover{
+          opacity: 1;
+      }
+
+      h1{
+          padding-top:2rem;
+          text-align: center;
+      }
+
+      .content{
+          padding-top: 2rem;
+          padding-left: 2rem;
+          padding-bottom: 2rem;
+          display: flex;
+          justify-content: left;
+          gap:2.5rem;
+          flex-wrap: wrap;
+      }
+
+      h2{
+          margin-top:2rem;
+          margin-left:2rem; 
+          text-align: center;
+      }
+
+      .card{
+          display: block;
+          text-decoration: none;
+          color: black;
+          width:30%;
+          transition: box-shadow .3s;
+      }
+
+      .card:hover{
+          box-shadow: 0 0 1rem rgba(33, 33, 33, 0.2);
+      }
+
+      .article {
+          border: black 2px outset;
+          padding: 2rem 2rem 2rem 2rem;
+      }
+
+      .article h3{
+          font-size: 1.75rem;
+      }
+
+      .article img{
+          width: 100%;
+          aspect-ratio: 16/9;
+          object-fit: cover;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="explore.css" />
+  </head>
+  <body>
+    <header>
+        <img src="/images/logo.png" alt="" />
+        <ul id="navbar">
+          <li><a href="http://localhost:5500/">Home</a></li>
+          <li><a href="http://localhost:5500/explore">Explore</a></li>
+        </ul>
+        <a href="./profile.html"><img id="profpic" src="/images/default-profile-img.webp" alt=""/></a>
+    </header>
+    <h1>Explore</h1>
+    <section class="content">
+      <% articles.forEach(article => { %>
+        <a class = "card" href="">
+          <div class = "article">
+            <h3><%= article.title %></h3>
+            <img src="/images/logo.png">
+            <p class="muted"><%= article.date.toLocaleDateString() %></p>
+            <p><%= article.desc %></p>
+          </div>
+        </a>
+      <% }) %>
+    </section>
+    <script src="script.js"></script>
+  </body>

@@ -5,7 +5,7 @@ const Blog = require("../models/blog");
 // const upload = require('../script');
 
 router.get("/", (req, res) => {
-    res.render("/form/index");
+    res.render("form/form");
   }); //send to form
   
 // router.post("/", upload.single('picture'), async (req, res) => {

@@ -27,6 +27,8 @@ connectDB();
 //-------------------middleware--------------------------------
 // app.use(express.static('features')) // for sendFile(), irrelevant switc to ejs;
 
+app.use( express.static( "public" ) ); // display static images
+
 app.set("view engine", "ejs"); //pick ejs as view engine
 
 app.set("views", __dirname + "/features/feature-1"); //pick folder for ejs
@@ -71,7 +73,6 @@ const storage = multer.diskStorage({
 });
   //enctype = "multipart/form-data"
 
-
 const upload = multer({ storage })
 console.log(upload)
 
@@ -79,6 +80,22 @@ app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 }); //prints out html requests
+
+
+
+//------------delete this----------- (debuging purposes)
+app.get('/debug', (req, res) => {
+  req.session.debugSession = { username: 'David' };
+  const David = new User({
+  name: req.session.username,
+  email: 'david@lodianto.com',
+  password: "balls",
+  bio: "i love dick",
+  pfp: "(path to img)"
+  }); 
+  David.save()
+});
+//---------------------------------
 
 //------------API-------------------
 app.use('/login', loginRoute);

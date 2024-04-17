@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            padding:0;
+            /* font-family: Arial, sans-serif; */
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* Ensures the header stays above other content */
+            display: flex;
+        }
+
+        header > * {
+            margin: 0 10px;
+        }
+
+        header > img,
+        header > a > img {
+            height: 50px;
+            border-radius: 50px;
+        }
+
+        #navbar {
+            list-style-type: none;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+        }
+
+        #navbar li {
+            margin-right: 10px;
+            margin-top: 10px;
+            /* margin-bottom:10px; */
+            padding: 0;
+        }
+
+        #profpic {
+            position:absolute;
+            right: 10px;
+        }
+
+        #navbar a {
+            text-decoration: none;
+            padding: 10px 15px 10px 15px;
+            background-color: white;
+            opacity: 0.8;
+            transition: all ease 500ms;
+            color:black;
+        }
+
+        #navbar a:hover{
+            opacity: 1;
+        }
+
+        form {
+            margin: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #8fb646;
+            box-sizing: border-box; 
+        }
+
+        button {
+            background-color: #005aef;
+            color: rgb(250, 250, 250);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #003dab;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+    <!-- <link rel="stylesheet" type="text/css" href="Form Tubes ARC.css"> -->
+</head>
+<body>
+    <header>
+        <img src="/images/logo.png" alt="rwar"/>
+        <ul id="navbar">
+            <li><a href="http://localhost:5500/">Home</a></li>
+            <li><a href="http://localhost:5500/explore">Explore</a></li>
+        </ul>
+        <a href="./profile.html"><img id="profpic" src="/images/default-profile-img.webp" alt=""/></a>
+    </header>
+    <form id="submissionForm">
+        <label for="title">Judul:</label><br>
+        <input type="text" id="title" name="title" required><br>
+
+        <label for="photo">Foto:</label><br>
+        <input type="file" id="photo" name="photo" accept="image/*" required><br>
+
+        <label for="Konten">Konten:</label><br>
+        <textarea id="content" name="content" required></textarea><br>
+
+        <label for="Deskripsi">Short Description:</label><br>
+        <input type="text" id="shortDescription" name="shortDescription" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="Form Tubes ARC.js"></script>
+</body>
+</html>
